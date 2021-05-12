@@ -4,6 +4,7 @@
   "description": "",
   "main": "App.js",
   "scripts": {
+    "dev": "parcel src/index.html",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,8 +21,18 @@
   },
   "homepage": "https://github.com/Nspired1/adopt-me#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^8.1.0",
+    "parcel": "^1.12.3",
     "prettier": "^2.3.0"
-  }
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "browerslist": [
+    "last 2 Chrome versions"
+  ]
 }
