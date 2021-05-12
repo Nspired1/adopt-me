@@ -1,0 +1,24 @@
+{
+  "name": "adoptme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nspired1/adopt-me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nspired1/adopt-me/issues"
+  },
+  "homepage": "https://github.com/Nspired1/adopt-me#readme",
+  "devDependencies": {
+    "prettier": "^2.3.0"
+  }
+}
