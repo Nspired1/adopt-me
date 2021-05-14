@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 
 class ErrorBoundary extends Component {
   state = { hasError: false, redirect: false };
-  static getDerviedStateFromError() {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
   componentDidCatch(error, info) {
