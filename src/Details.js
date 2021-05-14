@@ -17,6 +17,8 @@ class Details extends Component {
     );
     const json = await res.json();
     this.setState(
+      // both Object.assign and this.setState work, but one is less verbose. Both are acceptable.
+      // HOWEVER, this.setState explicitly lists all data being passed, so NO CONFUSION or QUESTION of what is being passed
       Object.assign(
         {
           loading: false,
