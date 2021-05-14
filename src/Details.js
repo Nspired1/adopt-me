@@ -3,11 +3,12 @@ import { withRouter } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
+import Modal from "./Modal";
 
 class Details extends Component {
   constructor() {
     super();
-    this.state = { loading: true };
+    this.state = { loading: true, showModal: false };
   }
 
   async componentDidMount() {
@@ -15,32 +16,36 @@ class Details extends Component {
       `http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`
     );
     const json = await res.json();
-    // this.setState(
-    //   Object.assign(
-    //     {
-    //       loading: false,
-    //     },
-    //     json.pets[0]
-    //   )
-    // );
-    this.setState({
-      loading: false,
-      name: json.pets[0].name,
-      breed: json.pets[0].breed,
-      animal: json.pets[0].animal,
-      description: json.pets[0].description,
-      city: json.pets[0].city,
-      state: json.pets[0].state,
-      images: json.pets[0].images,
-    });
+    this.setState(
+      Object.assign(
+        {
+          loading: false,
+        },
+        json.pets[0]
+      )
+    );
+    // this.setState({
+    //   loading: false,
+    //   name: json.pets[0].name,
+    //   breed: json.pets[0].breed,
+    //   animal: json.pets[0].animal,
+    //   description: json.pets[0].description,
+    //   city: json.pets[0].city,
+    //   state: json.pets[0].state,
+    //   images: json.pets[0].images,
+    //   showModal: json.pets[0].showModal,
+    // });
   }
+
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  adopt = () => (window.location = "http://bit.ly/pet-adopt");
 
   render() {
     if (this.state.loading) {
       return <h2>Loading...</h2>;
     }
 
-    const { animal, breed, city, state, description, name, images } =
+    const { animal, breed, city, state, description, name, images, showModal } =
       this.state;
 
     return (
@@ -53,12 +58,26 @@ class Details extends Component {
           </h2>
           <ThemeContext.Consumer>
             {([themeHook]) => (
-              <button style={{ backgroundColor: themeHook }}>
+              <button
+                onClick={this.toggleModal}
+                style={{ backgroundColor: themeHook }}
+              >
                 Adopt {name}
               </button>
             )}
           </ThemeContext.Consumer>
           <p>{description}</p>
+          {showModal ? (
+            <Modal>
+              <div>
+                <h1>Would you like to adopt {name}?</h1>
+                <div className="buttons">
+                  <button onClick={this.adopt}>Yes</button>
+                  <button onClick={this.toggleModal}>No</button>
+                </div>
+              </div>
+            </Modal>
+          ) : null}
         </div>
       </div>
     );
